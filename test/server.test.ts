@@ -7,7 +7,7 @@ beforeEach(async () => {
 });
 
 describe("Homework 1 Tests", () => {
-  it("API returns JSON with a name", async () => {
+  it("(5pts) API returns JSON with a name", async () => {
     const res = await SELF.fetch(`${BASE}/api/name`);
     expect(res.status).toBe(200);
     expect(res.headers.get("content-type") || "").toContain("application/json");
@@ -22,13 +22,13 @@ describe("Homework 1 Tests", () => {
       body: JSON.stringify({ score: n }),
     });
 
-  it("Display high score as 0 when table is empty", async () => {
+  it("(5pts) Display high score as 0 when table is empty", async () => {
     const res = await SELF.fetch(`${BASE}/api/highScore`);
     const body = (await res.json()) as { highScore: number };
     expect(body.highScore).toBe(0);
   });
 
-  it("Save the high score and display the high score", async () => {
+  it("(5pts) Save the high score and display the high score", async () => {
     const post = await postScore(10);
     expect(post.status).toBe(200);
 
@@ -37,7 +37,7 @@ describe("Homework 1 Tests", () => {
     expect(await get.json()).toEqual({ highScore: 10 });
   });
 
-  it("POST API rejects invalid scores", async () => {
+  it("(5pts) POST API rejects invalid scores", async () => {
     const neg = await postScore(-1);
     expect(neg.status).toBe(400);
 
@@ -49,7 +49,7 @@ describe("Homework 1 Tests", () => {
     expect(nonNum.status).toBe(400);
   });
 
-  it("Return the maximum score after multiple inserts into database", async () => {
+  it("(5pts) Return the maximum score after multiple inserts into database", async () => {
     await postScore(5);
     await postScore(12);
     await postScore(3);
