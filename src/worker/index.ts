@@ -1,6 +1,6 @@
 import { drizzle } from "drizzle-orm/d1";
 import { Hono } from "hono";
-import { users } from "../db/schema";
+import { users } from "../../db/schema";
 import { desc } from "drizzle-orm";
 
 const app = new Hono<{ Bindings: Env }>();
